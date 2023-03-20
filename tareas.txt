@@ -1,0 +1,20 @@
+LISTA DE TAREAS:
+
+	- Funciones: 
+		lectura de datos de entrada
+		función de evaluación de solución
+		
+	- Estructuras de datos:
+		matriz de flujos
+		matriz de distancias
+		vector solución
+	
+	- Greedy: 
+		potenciales de flujo
+		potenciales de distancia
+		asignación de unidades
+		
+	- Búsqueda local
+		vector DLB
+		función permutación
+		esqueleto del algoritmo

@@ -65,7 +65,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica1: ${OBJECTFILES}
 ${OBJECTDIR}/src/funciones.o: src/funciones.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/funciones.o src/funciones.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/funciones.o src/funciones.cpp
 
 # Subprojects
 .build-subprojects:

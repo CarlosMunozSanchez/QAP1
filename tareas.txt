@@ -1,7 +1,7 @@
 LISTA DE TAREAS:
 
 	- Funciones: 
-		lectura de datos de entrada
+		lectura de datos de entrada - hecho
 		función de evaluación de solución
 		
 	- Estructuras de datos:

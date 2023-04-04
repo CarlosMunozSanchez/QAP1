@@ -5,11 +5,11 @@
 using namespace std;
 
 /**
- * @brief Función que lee los datos del fichero de entrada y actualiza 
- * los vectores flujo y distancia con dichos valores
- * @param entrada ubicación del fichero de entrada
- * @param flujos matriz de flujos
- * @param distancias matriz de distancias
+ * @brief Función que lee los datos del fichero de entrada y actualiza.
+ * los vectores flujo y distancia con dichos valores.
+ * @param entrada ubicación del fichero de entrada.
+ * @param flujos matriz de flujos.
+ * @param distancias matriz de distancias.
  */
 void leerDatos(const string & entrada , vector<vector<int>> & flujos, vector<vector<int>> & distancias){
     
@@ -75,27 +75,68 @@ void leerDatos(const string & entrada , vector<vector<int>> & flujos, vector<vec
     fs.close();
 }
 
+/**
+ * @brief Función para mostrar por pantalla una matriz.
+ * @param matriz  Matriz que se desea mostrar.
+ */
 void mostrarMatriz(const vector<vector<int>> & matriz){
     cout << endl;
     cout << "Tamaño de la matriz: " << matriz.size() << " x " << matriz[0].size() << endl;
     
     for(int i = 0; i < matriz.size(); i++){
-        for(int j = 0; j < matriz[0].size(); j++){
+        for(int j = 0; j < matriz[i].size(); j++){
             cout << matriz[i][j] << " ";
         }
         cout << endl;
     }
 }
 
+/**
+ * @brief Función que calcula el coste de una solución. 
+ * @param permutacion Solución propuesta al problema.
+ * @param flujos Matriz de flujos asociada.
+ * @param distancias Matriz de distancias asociada.
+ * @return El coste asociado al vector solución proporcionado
+ */
+int evaluarSolucion(const vector<int> & permutacion, const vector<vector<int>> & flujos, const vector<vector<int>> & distancias ){
+    int sol = 0;
+    
+    for(int i = 0; i < permutacion.size(); i++){
+        for(int j = 0; j < permutacion.size(); j++){
+        
+            sol += flujos[i][j] * distancias[permutacion[i]-1][permutacion[j]-1];
+        
+        }
+        
+    }
+    
+    return sol;
+}
+
+
 int main(){
 
     string fichero = "./Instancias_QAP/chr22a.dat";
     
-    vector<vector<int>> uno, dos;
+    vector<vector<int>> flujos, distancias;
     
-    leerDatos(fichero, uno, dos);
+    leerDatos(fichero, flujos, distancias);
     
-    mostrarMatriz(uno);
-    mostrarMatriz(dos);
+    //mostrarMatriz(flujos);
+    //mostrarMatriz(distancias);
+    
+    int valores[] = {15, 2, 21, 8, 16, 1, 7, 18, 14, 13, 5, 17, 6, 11, 3, 4, 20, 19, 9, 22, 10, 12};
+    vector<int> solucion (valores, valores + sizeof(valores) / sizeof(int) );
+    
+    for(int i = 0; i < solucion.size(); i++){
+        cout << solucion[i] << " ";
+    }
+    
+    cout << endl;
+    
+    int s = evaluarSolucion(solucion, flujos, distancias);
+    
+    cout << s;
+    
     
 }

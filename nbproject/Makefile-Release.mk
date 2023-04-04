@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/src/QAPGreedy.o \
 	${OBJECTDIR}/src/funciones.o
 
 
@@ -61,6 +62,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica1: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica1 ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/src/QAPGreedy.o: src/QAPGreedy.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/QAPGreedy.o src/QAPGreedy.cpp
 
 ${OBJECTDIR}/src/funciones.o: src/funciones.cpp
 	${MKDIR} -p ${OBJECTDIR}/src

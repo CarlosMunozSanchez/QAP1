@@ -17,15 +17,41 @@ class QAPGreedy {
         //permutación solución final
         std::vector<int> solucion;
         
-        void actualizarFlujos();
-        void actualizarDistancia();
+        /**
+         * @brief Actualiza el vector de potencial de flujos.
+         * @param flujos Matriz de flujos asociada.
+         */
+        void actualizarFlujos(const std::vector<std::vector<int>> & flujos);
+        
+        /**
+         * @brief Actualiza el vector de potencial de distancias.
+         * @param distancias Matriz de distancias asociada.
+         */
+        void actualizarDistancia(const std::vector<std::vector<int>> & distancias);
+        
+        /**
+         * @brief Calcula la solución al problema de forma Greedy, usando
+         * los potenciales de flujo y distancia.
+         */
         void calcularSolucion();
         
     public:
         QAPGreedy(const std::vector<std::vector<int>> & flujos, const std::vector<std::vector<int>> & distancias);
-        
-        std::vector<int> getSolucion();
+    
 
+        std::vector<int> getPotencialDistancia() const {
+            return potencialDistancia;
+        }
+
+        std::vector<int> getPotencialFlujo() const {
+            return potencialFlujo;
+        }
+
+        std::vector<int> getSolucion() const {
+            return solucion;
+        }
+
+        
 };
 
 #endif /* QAPGREEDY_H */

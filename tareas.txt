@@ -1,15 +1,15 @@
 LISTA DE TAREAS:
 
-	- Funciones: 
+	- Funciones: - HECHO
 		lectura de datos de entrada - hecho
-		función de evaluación de solución
+		función de evaluación de solución - hecho
 		
-	- Estructuras de datos:
+	- Estructuras de datos: - HECHO
 		matriz de flujos
 		matriz de distancias
 		vector solución
 	
-	- Greedy: 
+	- Greedy: - FALTA TEST
 		potenciales de flujo
 		potenciales de distancia
 		asignación de unidades

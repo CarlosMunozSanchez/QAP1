@@ -112,31 +112,3 @@ int evaluarSolucion(const vector<int> & permutacion, const vector<vector<int>> &
     
     return sol;
 }
-
-
-int main(){
-
-    string fichero = "./Instancias_QAP/chr22a.dat";
-    
-    vector<vector<int>> flujos, distancias;
-    
-    leerDatos(fichero, flujos, distancias);
-    
-    //mostrarMatriz(flujos);
-    //mostrarMatriz(distancias);
-    
-    int valores[] = {15, 2, 21, 8, 16, 1, 7, 18, 14, 13, 5, 17, 6, 11, 3, 4, 20, 19, 9, 22, 10, 12};
-    vector<int> solucion (valores, valores + sizeof(valores) / sizeof(int) );
-    
-    for(int i = 0; i < solucion.size(); i++){
-        cout << solucion[i] << " ";
-    }
-    
-    cout << endl;
-    
-    int s = evaluarSolucion(solucion, flujos, distancias);
-    
-    cout << s;
-    
-    
-}

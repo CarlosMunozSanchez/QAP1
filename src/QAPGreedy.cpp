@@ -71,7 +71,7 @@ void QAPGreedy::calcularSolucion(){
         }
         
         //actualizo la solución
-        solucion[unidad] = loc;
+        solucion[unidad] = loc+1;
         
         //modifico los valores para que no vuelvan a salir
         potencialFlujo[unidad] = -1;

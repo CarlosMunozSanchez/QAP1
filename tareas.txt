@@ -9,7 +9,7 @@ LISTA DE TAREAS:
 		matriz de distancias
 		vector solución
 	
-	- Greedy: - FALTA TEST
+	- Greedy: - HECHO
 		potenciales de flujo
 		potenciales de distancia
 		asignación de unidades

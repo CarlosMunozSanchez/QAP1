@@ -36,6 +36,7 @@ class QAPGreedy {
         void calcularSolucion();
         
     public:
+        
         QAPGreedy(const std::vector<std::vector<int>> & flujos, const std::vector<std::vector<int>> & distancias);
     
 

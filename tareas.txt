@@ -14,7 +14,12 @@ LISTA DE TAREAS:
 		potenciales de distancia
 		asignación de unidades
 		
-	- Búsqueda local
-		vector DLB
+	- Búsqueda local:
+		vector DLB - hecho
 		función permutación
-		esqueleto del algoritmo
+		función de comprobación de coste
+		esqueleto del algoritmo - hecho
+		
+	- Main: 
+		gestión de parámetros del programa.
+		llamadas a funciones.

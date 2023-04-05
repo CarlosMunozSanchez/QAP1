@@ -8,6 +8,7 @@
 #include "QAPBL.h"
 #include "random.hpp"
 #include "funciones.h"
+#include <iostream>
 
 using namespace std;
 // get base random alias which is auto seeded and has static API and internal state
@@ -29,17 +30,33 @@ QAPBL::QAPBL(const vector<vector<int>> & flujos, const vector<vector<int>> & dis
     Random::seed(seed);   
     Random::shuffle(solucion);
 
-    coste = evaluarSolucion(solucion);
-    
+    coste = evaluarSolucion(solucion, flujos, distancias);
+        
     busquedaLocal(flujos, distancias);
 }
 
 int QAPBL::comprobarMovimiento(int i, int j, const vector<vector<int>> & flujos, const vector<vector<int>> & distancias){
-
+    int diferencia = 0;
+    
+    //factorización del cambio en el coste debido a cambio
+    for(int k = 0; k < solucion.size(); k++){
+        if(k != i and k != j){
+            diferencia +=
+            flujos[i][k] * (distancias[solucion[j]-1][solucion[k]-1] - distancias[solucion[i]-1][solucion[k]-1]) +
+            flujos[j][k] * (distancias[solucion[i]-1][solucion[k]-1] - distancias[solucion[j]-1][solucion[k]-1]) +
+            flujos[k][i] * (distancias[solucion[k]-1][solucion[j]-1] - distancias[solucion[k]-1][solucion[i]-1]) +
+            flujos[k][j] * (distancias[solucion[k]-1][solucion[i]-1] - distancias[solucion[k]-1][solucion[j]-1]);
+        }
+    }
+    
+    return diferencia;
 }
         
 void QAPBL::aplicarMovimiento(int i, int j){
-
+    int aux = solucion[i];
+    //permutar i y j
+    solucion[i] = solucion[j];
+    solucion[j] = aux;    
 }
 
 void QAPBL::busquedaLocal(const vector<vector<int>> & flujos, const vector<vector<int>> & distancias){
@@ -60,14 +77,15 @@ void QAPBL::busquedaLocal(const vector<vector<int>> & flujos, const vector<vecto
             if(!dlb[i]){
                 hay_mejora = false;
                 //se busca la primera solución que mejore
-                for(int j = 0; j < solucion.size() and !hay_mejora; j++){
+                for(int j = 0; j < solucion.size(); j++){
                     int aux = comprobarMovimiento(i, j, flujos, distancias);
                     iter++;
                     //cuando encontremos mejora, la realizamos
-                    if(aux > 0){
+                    if(aux < 0){
                         hay_mejora = true;
                         aplicarMovimiento(i, j);
                         
+                        //actualizamos los bits
                         if(dlb[i] != false){
                             dlb[i] = false;
                             dlbStatus++;
@@ -85,6 +103,5 @@ void QAPBL::busquedaLocal(const vector<vector<int>> & flujos, const vector<vecto
                 }
             }            
         }
-    }
-    
+    }    
 }

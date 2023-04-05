@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "QAPGreedy.h"
+#include "QAPBL.h"
 #include "funciones.h"
 
 using namespace std;
@@ -39,6 +40,7 @@ int main(){
     
     cout << s << endl;
     
+    //-------------------------------------------------
     
     cout << "SOLUCIÓN GREEDY" << endl;
     
@@ -47,6 +49,24 @@ int main(){
     s = evaluarSolucion(greedy.getSolucion(), flujos, distancias);
     
     solucion = greedy.getSolucion();
+    
+    for(int i = 0; i < solucion.size(); i++){
+        cout << solucion[i] << " ";
+    }
+    
+    cout << endl << s << endl;
+    
+    //-------------------------------------------------
+    
+    cout << "SOLUCIÓN BL" << endl;
+    
+    int seed = 42;
+    
+    QAPBL bl(flujos, distancias, seed);
+    
+    s = evaluarSolucion(bl.getSolucion(), flujos, distancias);
+    
+    solucion = bl.getSolucion();
     
     for(int i = 0; i < solucion.size(); i++){
         cout << solucion[i] << " ";

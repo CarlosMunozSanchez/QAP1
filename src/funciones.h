@@ -29,6 +29,12 @@ void leerDatos(const std::string & entrada , std::vector<std::vector<int>> & flu
 void mostrarMatriz(const std::vector<std::vector<int>> & matriz);
 
 /**
+ * @brief Función para mostrar por pantalla un vector.
+ * @param vector Vector que se desea mostrar.
+ */
+void mostrarVector(const std::vector<int> & vector);
+
+/**
  * @brief Función que calcula el coste de una solución. 
  * @param permutacion Solución propuesta al problema.
  * @param flujos Matriz de flujos asociada.

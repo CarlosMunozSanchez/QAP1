@@ -20,6 +20,9 @@ LISTA DE TAREAS:
 		función de comprobación de coste
 		esqueleto del algoritmo - hecho
 		
-	- Main: 
+	- Main: SOLO FALTA EL FITNESS
 		gestión de parámetros del programa.
 		llamadas a funciones.
+		mostrar el fitness
+		
+	- Hacer la memoria y relenar tablas

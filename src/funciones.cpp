@@ -92,6 +92,21 @@ void mostrarMatriz(const vector<vector<int>> & matriz){
 }
 
 /**
+ * @brief Función para mostrar por pantalla un vector.
+ * @param vector  Vector que se desea mostrar.
+ */
+void mostrarVector(const vector<int> & v){
+    cout << endl;
+    cout << "Tamaño del vector: " << v.size() << endl;
+    
+    for(int j = 0; j < v.size(); j++){
+        cout << v[j] << " ";
+    }
+    cout << endl;
+    
+}
+
+/**
  * @brief Función que calcula el coste de una solución. 
  * @param permutacion Solución propuesta al problema.
  * @param flujos Matriz de flujos asociada.

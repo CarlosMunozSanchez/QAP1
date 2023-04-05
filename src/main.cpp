@@ -6,74 +6,64 @@
  */
 
 #include <iostream>
+#include <chrono>
 #include "QAPGreedy.h"
 #include "QAPBL.h"
 #include "funciones.h"
 
 using namespace std;
+using namespace std::chrono;
 
 /*
  * 
  */
-int main(){
-
-    string fichero = "./Instancias_QAP/chr22a.dat";
+int main(int argc, char** argv){
+    
+    if(argc != 3){
+        cerr << "Uso: " << argv[0] << " [archivo de datos] [semilla]" << endl;
+        exit(-1);
+    }
+    
+    //lectura de datos de entrada
+    string entrada(argv[1]);
+    int seed = atoi(argv[2]);
     
     vector<vector<int>> flujos, distancias;
     
-    leerDatos(fichero, flujos, distancias);
+    leerDatos(entrada, flujos, distancias);
     
-    //mostrarMatriz(flujos);
-    //mostrarMatriz(distancias);
+    vector<int> solucion;
     
-    //int valores[] = {15, 2, 21, 8, 16, 1, 7, 18, 14, 13, 5, 17, 6, 11, 3, 4, 20, 19, 9, 22, 10, 12};
-    int valores[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
-    vector<int> solucion (valores, valores + sizeof(valores) / sizeof(int) );
+    cout << "---------------------------------------------------------------" << endl;
     
-    for(int i = 0; i < solucion.size(); i++){
-        cout << solucion[i] << " ";
-    }
-    
-    cout << endl;
-    
-    int s = evaluarSolucion(solucion, flujos, distancias);
-    
-    cout << s << endl;
-    
-    //-------------------------------------------------
-    
-    cout << "SOLUCIÓN GREEDY" << endl;
-    
+    //Greedy
+    auto momentoInicio = high_resolution_clock::now();
     QAPGreedy greedy(flujos, distancias);
     
-    s = evaluarSolucion(greedy.getSolucion(), flujos, distancias);
-    
     solucion = greedy.getSolucion();
+    auto momentoFin = high_resolution_clock::now();
     
-    for(int i = 0; i < solucion.size(); i++){
-        cout << solucion[i] << " ";
-    }
+    cout << "Solución greedy con coste " << evaluarSolucion(solucion, flujos, distancias);    
+    mostrarVector(solucion);
     
-    cout << endl << s << endl;
+    microseconds tiempo = duration_cast<std::chrono::microseconds>(momentoFin - momentoInicio);
+    cout << "Tiempo Pasado: " << tiempo.count() / 1000.0 << endl;
     
-    //-------------------------------------------------
     
-    cout << "SOLUCIÓN BL" << endl;
+    cout << "---------------------------------------------------------------" << endl;
     
-    int seed = 42;
-    
+    //Búsqueda local
+    momentoInicio = high_resolution_clock::now();
     QAPBL bl(flujos, distancias, seed);
     
-    s = evaluarSolucion(bl.getSolucion(), flujos, distancias);
-    
     solucion = bl.getSolucion();
+    momentoFin = high_resolution_clock::now();
     
-    for(int i = 0; i < solucion.size(); i++){
-        cout << solucion[i] << " ";
-    }
+    cout << "Solución búsqueda local con coste " << evaluarSolucion(solucion, flujos, distancias);    
+    mostrarVector(solucion);
     
-    cout << endl << s << endl;
-    
+    tiempo = duration_cast<std::chrono::microseconds>(momentoFin - momentoInicio);
+    cout << "Tiempo Pasado: " << tiempo.count() / 1000.0 << endl;
 }
 
 

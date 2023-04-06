@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/class.cc to edit this template
- */
-
 /* 
  * File:   QAPGreedy.cpp
  * Author: carlos
@@ -75,7 +70,7 @@ void QAPGreedy::calcularSolucion(){
         
         //modifico los valores para que no vuelvan a salir
         potencialFlujo[unidad] = -1;
-        potencialDistancia[loc] = 999999;
+        potencialDistancia[loc] = 9999999;
         
     }
 }

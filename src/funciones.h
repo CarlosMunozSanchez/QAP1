@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.h to edit this template
- */
-
 /* 
  * File:   funciones.h
  * Author: carlos
@@ -16,11 +11,19 @@
 /**
  * @brief Función que lee los datos del fichero de entrada y actualiza.
  * los vectores flujo y distancia con dichos valores.
- * @param entrada ubicación del fichero de entrada.
- * @param flujos matriz de flujos.
- * @param distancias matriz de distancias.
+ * @param entrada Ruta del fichero de entrada.
+ * @param flujos Matriz de flujos.
+ * @param distancias Matriz de distancias.
  */
 void leerDatos(const std::string & entrada , std::vector<std::vector<int>> & flujos, std::vector<std::vector<int>> & distancias);
+
+/**
+ * @brief Función para leer un archivo de solución óptima.
+ * @param entrada Ruta del fichero de entrada.
+ * @param solucion Vector en el que se guardará la solución.
+ * @return El coste de la solución óptima
+ */
+int leerSolucion(const std::string & entrada, std::vector<int> & solucion);
 
 /**
  * @brief Función para mostrar por pantalla una matriz.
@@ -39,9 +42,13 @@ void mostrarVector(const std::vector<int> & vector);
  * @param permutacion Solución propuesta al problema.
  * @param flujos Matriz de flujos asociada.
  * @param distancias Matriz de distancias asociada.
+ * @param fitness Indica el costo de la solución óptima. Al acabar la función, 
+ * se sobrescribe con el fitness
  * @return El coste asociado al vector solución proporcionado
  */
-int evaluarSolucion(const std::vector<int> & permutacion, const std::vector<std::vector<int>> & flujos, const std::vector<std::vector<int>> & distancias );
+int evaluarSolucion(const std::vector<int> & permutacion, 
+        const std::vector<std::vector<int>> & flujos, const std::vector<std::vector<int>> & distancias, 
+        float & fitness);
 
 #endif /* FUNCIONES_H */
 

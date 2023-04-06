@@ -4,13 +4,6 @@
 
 using namespace std;
 
-/**
- * @brief Función que lee los datos del fichero de entrada y actualiza.
- * los vectores flujo y distancia con dichos valores.
- * @param entrada ubicación del fichero de entrada.
- * @param flujos matriz de flujos.
- * @param distancias matriz de distancias.
- */
 void leerDatos(const string & entrada , vector<vector<int>> & flujos, vector<vector<int>> & distancias){
     
     flujos.clear();
@@ -29,7 +22,7 @@ void leerDatos(const string & entrada , vector<vector<int>> & flujos, vector<vec
     int tam;
     
     //leer el tamaño de la matriz
-    fs.getline(aux, 6);
+    fs.getline(aux, 64);
     tam = atoi(aux);
         
     //actualizar tamaños
@@ -80,10 +73,58 @@ void leerDatos(const string & entrada , vector<vector<int>> & flujos, vector<vec
     fs.close();
 }
 
-/**
- * @brief Función para mostrar por pantalla una matriz.
- * @param matriz  Matriz que se desea mostrar.
- */
+int leerSolucion(const string & entrada, vector<int> & solucion){
+    int coste;
+    int size;
+    
+    fstream fs;
+    char aux[6];
+    
+    fs.open(entrada);
+    
+    if(!fs.is_open()){
+        cerr << "Error abriendo " << entrada << " ¿Es correcta la ruta?" << endl;
+        exit(-1);
+    }
+    
+    //----------------------comienzo a leer-----------------------
+    //me salto los espacios en blanco
+    while(fs.peek() == ' ' or fs.peek() == '\n'){
+        fs.ignore();
+    }
+
+    string cadena;
+    //leo el tamaño
+    while(fs.peek() != ' ' and fs.peek() != '\n'){
+        cadena.push_back(fs.get());
+    }
+    
+    size = stoi(cadena);    
+    solucion.resize(size);
+    
+    for(int i = 0; i < size + 1; i++){
+        //me salto los espacios en blanco
+        while(fs.peek() == ' ' or fs.peek() == '\n'){
+            fs.ignore();
+        }
+
+        cadena.clear();
+        //leo el tamaño
+        while(fs.peek() != ' ' and fs.peek() != '\n'){
+            cadena.push_back(fs.get());
+        }
+        
+        if(i == 0){
+            coste = stoi(cadena);
+        }
+        else{
+            solucion[i-1] = stoi(cadena);
+        }
+    }
+    
+    return coste;    
+}
+
 void mostrarMatriz(const vector<vector<int>> & matriz){
     cout << endl;
     cout << "Tamaño de la matriz: " << matriz.size() << " x " << matriz[0].size() << endl;
@@ -96,10 +137,6 @@ void mostrarMatriz(const vector<vector<int>> & matriz){
     }
 }
 
-/**
- * @brief Función para mostrar por pantalla un vector.
- * @param vector  Vector que se desea mostrar.
- */
 void mostrarVector(const vector<int> & v){
     cout << endl;
     cout << "Tamaño del vector: " << v.size() << endl;
@@ -111,24 +148,20 @@ void mostrarVector(const vector<int> & v){
     
 }
 
-/**
- * @brief Función que calcula el coste de una solución. 
- * @param permutacion Solución propuesta al problema.
- * @param flujos Matriz de flujos asociada.
- * @param distancias Matriz de distancias asociada.
- * @return El coste asociado al vector solución proporcionado
- */
-int evaluarSolucion(const vector<int> & permutacion, const vector<vector<int>> & flujos, const vector<vector<int>> & distancias ){
+int evaluarSolucion(const vector<int> & permutacion,    
+        const vector<vector<int>> & flujos, const vector<vector<int>> & distancias, 
+        float & fitness ){
     int sol = 0;
     
     for(int i = 0; i < permutacion.size(); i++){
         for(int j = 0; j < permutacion.size(); j++){
         
-            sol += flujos[i][j] * distancias[permutacion[i]-1][permutacion[j]-1];
-        
-        }
-        
+            sol += flujos[i][j] * distancias[permutacion[i]-1][permutacion[j]-1];        
+        }        
     }
+    
+    //calcular el fitness
+    fitness = (sol - fitness) / fitness;
     
     return sol;
 }

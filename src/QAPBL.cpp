@@ -30,7 +30,8 @@ QAPBL::QAPBL(const vector<vector<int>> & flujos, const vector<vector<int>> & dis
     Random::seed(seed);   
     Random::shuffle(solucion);
 
-    coste = evaluarSolucion(solucion, flujos, distancias);
+    float aux = 1;
+    coste = evaluarSolucion(solucion, flujos, distancias, aux);
         
     busquedaLocal(flujos, distancias);
 }

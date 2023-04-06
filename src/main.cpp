@@ -35,6 +35,7 @@ int main(int argc, char** argv){
     vector<int> solucion;
     
     cout << "---------------------------------------------------------------" << endl;
+    cout << "Resultados del archivo " << entrada << endl;
     
     //Greedy
     auto momentoInicio = high_resolution_clock::now();

@@ -21,6 +21,11 @@ void leerDatos(const string & entrada , vector<vector<int>> & flujos, vector<vec
     
     fs.open(entrada);
     
+    if(!fs.is_open()){
+        cerr << "Error abriendo " << entrada << " ¿Es correcta la ruta?" << endl;
+        exit(-1);
+    }
+    
     int tam;
     
     //leer el tamaño de la matriz

@@ -10,6 +10,7 @@ seed=42
 ./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/nug28.dat $seed >> ejecuciones.out
 ./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/sko81.dat $seed >> ejecuciones.out
 ./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/sko90.dat $seed >> ejecuciones.out
+./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/sko100a.dat $seed >> ejecuciones.out
 ./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/sko100f.dat $seed >> ejecuciones.out
 ./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/tai100a.dat $seed >> ejecuciones.out
 ./dist/Debug/GNU-Linux/practica1 /home/carlos/Escritorio/mh/practicas/practica1/Instancias_QAP/tai100b.dat $seed >> ejecuciones.out
